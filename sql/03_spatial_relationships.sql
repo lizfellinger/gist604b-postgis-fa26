@@ -9,6 +9,9 @@
 -- Hint: Filter rows where name = 'Queensboro Brg'
 
 -- TODO: Write your query below
+select ST_AsText(geom) as queensboro
+from nyc_streets
+where name = 'Queensboro Brg';
 
 
 
@@ -24,7 +27,12 @@
 -- Hint: Use the SQL query from Exercise 1 to get the geometry of Queensboro Brg in the WHERE clause
 
 -- TODO: Write your query below
-
+select name as neighborhood, boroname as borough 
+from nyc_neighborhoods
+where ST_Intersects(geom,( 
+    select geom
+    from nyc_streets
+    where name = 'Queensboro Brg'));
 
 
 
@@ -42,7 +50,14 @@
 -- Hint: Exclude NULL street names using name IS NOT NULL in the WHERE clause
 
 -- TODO: Write your query below
-
+select name 
+from nyc_streets
+where ST_Intersects(geom, 
+    (select geom
+    from nyc_streets
+    where name = 'Queensboro Brg'))
+    and name != 'Queensboro Brg'
+    and name is not null; 
 
 
 
@@ -57,6 +72,12 @@
 -- Hint: Use the SQL query from Exercise 1 to get the geometry of Queensboro Brg in the WHERE clause
 
 -- TODO: Write your query below
-
+select SUM(popn_total)
+from nyc_census_blocks
+where ST_DWithin(geom, 
+    (select geom
+    from nyc_streets
+    where name = 'Queensboro Brg'), 
+    50);
 
 
