@@ -25,7 +25,9 @@ from nyc_census_blocks
 -- Hint: Filter rows where boroname = 'Manhattan'
 
 -- TODO: Write your query below
-
+select SUM(popn_total) as manhattan_pop
+from nyc_census_blocks
+where boroname = 'Manhattan'
 
 
 -- Exercise 3: For each borough, what percentage of the population is black?
