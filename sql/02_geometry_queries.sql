@@ -119,6 +119,10 @@ where name = 'Soho';
 -- Hint: Use the nyc_neighborhoods table
 -- Hint: Filter rows where name = 'Coney Island'
 
+select ST_NumGeometries(geom) as num_coney_island_polygons
+from nyc_neighborhoods
+where name = 'Coney Island';
+
 
 
 -- Exercise 8: What are the 5 longest roads in NYC?
@@ -136,6 +140,9 @@ where name = 'Soho';
 -- Hint: Use the nyc_streets table
 -- Hint: ORDER BY ST_Length(geom) DESC OR use the alias length_meters
 -- Hint: Use LIMIT 5
-
+select name, ST_Length(geom) as length_meters
+from nyc_streets
+Order by length_meters desc 
+limit 5; 
 
 
