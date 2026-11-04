@@ -16,6 +16,11 @@
 -- Hint: Filter rows where n.name = 'East Village'
 
 -- TODO: Write your query below
+select ss.name, ss.routes
+from nyc_subway_stations as ss 
+JOIN nyc_neighborhoods as n 
+    on ST_intersects(ss.geom, n.geom)
+    where n.name = 'East Village';
 
 
 
@@ -39,6 +44,11 @@
 -- Hint: Filter rows where ss.routes LIKE '%7%'
 
 -- TODO: Write your query below
+select distinct n.name 
+from nyc_neighborhoods as n 
+Join nyc_subway_stations as ss 
+    on ST_intersects(ss.geom, n.geom)
+    where ss.routes like '%7%';
 
 
 
