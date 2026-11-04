@@ -12,7 +12,9 @@
 -- Note: Units will be in square meters (CRS is UTM Zone 18N, EPSG:26918)
 
 -- TODO: Write your query below
-
+select ST_Area(geom) as new_brighton_area_sq_m
+from nyc_neighborhoods
+Where name = 'New Brighton';
 
 
 
