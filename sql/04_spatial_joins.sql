@@ -89,6 +89,11 @@ join nyc_neighborhoods as n
 -- Hint: GROUP BY n.name, n.geom
 
 -- TODO: Write your query below
-
+select n.name, SUM(cb.popn_total) / (ST_Area(n.geom) / 1000000.0) as population_density_per_sqkm
+from nyc_census_blocks as cb 
+Join nyc_neighborhoods as n 
+    on ST_intersects(cb.geom, n.geom)
+    where n.name in ('East Village', 'West Village')
+    group by n.name, n.geom; 
 
 
