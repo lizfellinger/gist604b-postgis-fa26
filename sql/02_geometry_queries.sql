@@ -30,7 +30,9 @@ Where name = 'New Brighton';
 -- Hint: Filter rows where boroname = 'The Bronx'
 
 -- TODO: Write your query below
-
+select ST_Area(ST_Union(geom)) / 4046.86 as bronx_area_acres
+from nyc_neighborhoods
+where boroname = 'The Bronx';
 
 
 
