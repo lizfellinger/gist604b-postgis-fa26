@@ -65,7 +65,11 @@ Join nyc_subway_stations as ss
 -- Hint: Filter rows where n.name = 'Financial District'
 
 -- TODO: Write your query below
-
+select SUM(cb.popn_total) as total_population
+from nyc_census_blocks as cb
+join nyc_neighborhoods as n
+    on ST_intersects(cb.geom, n.geom)
+    where n.name = 'Financial District';
 
 
 
